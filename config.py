@@ -1,0 +1,2 @@
+NOISE_DIM = 100
+IMAGE_DIM = (50, 37)
