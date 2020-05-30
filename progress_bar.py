@@ -22,4 +22,4 @@ class ProgressBar:
         self.show()
         if self.i >= self.length:
             self.done = True
-            print()
+            print("Finished in", str(datetime.timedelta(seconds=int(time.time() - self.init_time))))
