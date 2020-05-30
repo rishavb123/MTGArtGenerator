@@ -8,9 +8,9 @@ class ProgressBar:
     def __init__(self, length):
         self.length = length
         self.i = 0
-        self.show()
         self.init_time = time.time()
         self.done = False
+        self.show()
 
     def show(self):
         progress = int(self.i / self.length * PROGRESS_BAR['width'])
