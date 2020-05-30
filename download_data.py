@@ -17,9 +17,10 @@ def get_image(url):
 def get_resized_image(url):
     return cv2.resize(get_image(url), IMAGE_DIM)
 
-artist = 'Seb McKinnon'
+# artist = 'Seb McKinnon'
+artist = None
 
-path = 'images/' + artist
+path = 'images/' + (artist if artist is not None else "all")
 
 if not os.path.exists(path):
     os.mkdir(path)
@@ -30,7 +31,7 @@ with open('./data/all-cards-20200529172208.json', encoding='utf-8') as f:
     bar = ProgressBar(len(data))
 
     for card_obj in data:
-        if 'artist' in card_obj and card_obj['artist'] == artist and 'image_uris' in card_obj and 'art_crop' in card_obj['image_uris']:
+        if (artist == 'all' or artist is None or ('artist' in card_obj and card_obj['artist'] == artist)) and 'image_uris' in card_obj and 'art_crop' in card_obj['image_uris']:
             img = get_resized_image(card_obj['image_uris']['art_crop'])
             cv2.imwrite(path + "/" + card_obj['name'] + ".png", img)
         bar.increment()
