@@ -3,6 +3,7 @@ import os
 import numpy as np
 import urllib.request as urllib
 import cv2
+import time
 import json
 
 from config import IMAGE_DIM
@@ -25,7 +26,7 @@ path = 'images/' + (artist if artist is not None else "all")
 if not os.path.exists(path):
     os.mkdir(path)
 
-with open('./data/all-cards-20200529172208.json', encoding='utf-8') as f:
+with open('./data/unique-artwork-20200529172420.json', encoding='utf-8') as f:
     data = json.load(f)
 
     bar = ProgressBar(len(data))
@@ -33,5 +34,5 @@ with open('./data/all-cards-20200529172208.json', encoding='utf-8') as f:
     for card_obj in data:
         if (artist == 'all' or artist is None or ('artist' in card_obj and card_obj['artist'] == artist)) and 'image_uris' in card_obj and 'art_crop' in card_obj['image_uris']:
             img = get_resized_image(card_obj['image_uris']['art_crop'])
-            cv2.imwrite(path + "/" + card_obj['name'] + ".png", img)
+            cv2.imwrite(path + "/" + card_obj['name'] + ' - ' + str(int(time.time() * 1000)) + ".png", img)
         bar.increment()
