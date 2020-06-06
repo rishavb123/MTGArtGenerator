@@ -22,7 +22,6 @@ def get_resized_image(url):
 # artist = 'Rebecca Guay'
 # artist = None
 artist = None if len(sys.argv) < 2 else ' '.join(sys.argv[1:])
-# print(artist)
 
 path = 'images/' + (artist if artist is not None else "all")
 
