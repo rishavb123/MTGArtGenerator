@@ -10,7 +10,7 @@ from config import PROGRESS_BAR
 def load_data(image_dir, should_log=True):
     images = []
 
-    ls = os.listdir(image_dir + '/color/')
+    ls = os.listdir(image_dir)
     l = len(ls)
 
     def log(*args, **kwargs):
