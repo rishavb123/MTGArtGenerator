@@ -1,4 +1,5 @@
 import os
+import sys
 
 import numpy as np
 import urllib.request as urllib
@@ -18,8 +19,10 @@ def get_image(url):
 def get_resized_image(url):
     return cv2.resize(get_image(url), IMAGE_DIM)
 
-# artist = 'Seb McKinnon'
-artist = None
+# artist = 'Rebecca Guay'
+# artist = None
+artist = None if len(sys.argv) < 2 else ' '.join(sys.argv[1:])
+# print(artist)
 
 path = 'images/' + (artist if artist is not None else "all")
 
